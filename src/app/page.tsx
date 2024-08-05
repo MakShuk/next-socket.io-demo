@@ -1,16 +1,12 @@
 import { notFound } from 'next/navigation'
 import { cookies } from 'next/headers'
+import SocketPage from '@/components/socket-page'
 
 
-export default function Page() {
+export default function MainPage() {
   const encryptedSessionData = cookies().get('session')?.value
   if (!encryptedSessionData) {
     notFound()
   }
-  return (
-    <div>
-      <h1>Session Data</h1>
-      <p>{encryptedSessionData}</p>
-    </div>
-  )
+  return <SocketPage keyValue={encryptedSessionData} />
 }
